@@ -1,9 +1,0 @@
-{
-  "framework": "vite",
-  "rewrites": [
-    {
-      "source": "/((?!assets/|photos/|favicon|music).*)$",
-      "destination": "/index.html"
-    }
-  ]
-}

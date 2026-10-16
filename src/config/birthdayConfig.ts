@@ -1,3 +1,9 @@
+import photo1 from '../assets/photos/photo1.jpg';
+import photo2 from '../assets/photos/photo2.jpg';
+import photo3 from '../assets/photos/photo3.jpg';
+import photo4 from '../assets/photos/photo4.jpg';
+import photo5 from '../assets/photos/photo5.jpg';
+
 export interface PhotoItem {
   id: number;
   url: string;
@@ -214,35 +220,35 @@ export const BIRTHDAY_CONFIG: BirthdayConfig = {
     photos: [
       {
         id: 1,
-        url: "/photos/photo1.jpg",
+        url: photo1,
         title: "Little Deepu ✨",
         caption: "Those innocent eyes and cute smile that still light up my world",
         date: "Memory 01 · Pure Innocence"
       },
       {
         id: 2,
-        url: "/photos/photo2.jpg",
+        url: photo2,
         title: "Golden Hour Glow 🌸",
         caption: "Sunlight falling on your face, pure peace and breathtaking beauty",
         date: "Memory 02 · Sunlit Bliss"
       },
       {
         id: 3,
-        url: "/photos/photo3.jpg",
+        url: photo3,
         title: "Timeless Elegance 🖤",
         caption: "Classic vintage vibes, traditional jhumkas, and the most graceful gaze",
         date: "Memory 03 · Retro Cam"
       },
       {
         id: 4,
-        url: "/photos/photo4.jpg",
+        url: photo4,
         title: "The Loveliest Smile 🌺",
         caption: "Flower in your hair and that heartwarming smile I will cherish forever",
         date: "Memory 04 · Pure Radiance"
       },
       {
         id: 5,
-        url: "/photos/photo5.jpg",
+        url: photo5,
         title: "Little Princess Deepu 👑",
         caption: "Dressed up in yellow silk, our cute little baby Deepu back in 2015",
         date: "Memory 05 · Sweetest Childhood"

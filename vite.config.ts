@@ -12,31 +12,7 @@ function assetSavePlugin(): Plugin {
   return {
     name: 'asset-save-plugin',
     configureServer(server) {
-      // Direct asset serving middleware for /photos/ and /music.mp3
-      server.middlewares.use((req, res, next) => {
-        if (req.url?.startsWith('/photos/')) {
-          const filename = req.url.replace('/photos/', '').split('?')[0];
-          const filePath = path.resolve(__dirname, 'public/photos', filename);
-          if (fs.existsSync(filePath)) {
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'image/jpeg');
-            res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-            return fs.createReadStream(filePath).pipe(res);
-          }
-        }
-        if (req.url === '/music.mp3' || req.url?.startsWith('/music.mp3?')) {
-          const filePath = path.resolve(__dirname, 'public/music.mp3');
-          if (fs.existsSync(filePath)) {
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'audio/mpeg');
-            res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-            return fs.createReadStream(filePath).pipe(res);
-          }
-        }
-        next();
-      });
-
-      // API to save photo
+      // API to save photo to both public/photos and src/assets/photos
       server.middlewares.use('/api/save-photo', (req, res) => {
         if (req.method === 'POST') {
           let body = '';
@@ -46,9 +22,15 @@ function assetSavePlugin(): Plugin {
               const { index, dataUrl } = JSON.parse(body);
               const base64Data = dataUrl.replace(/^data:image\/\w+;base64,/, '');
               const buffer = Buffer.from(base64Data, 'base64');
-              const dir = path.resolve(__dirname, 'public/photos');
-              if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-              fs.writeFileSync(path.join(dir, `photo${index}.jpg`), buffer);
+              
+              const dir1 = path.resolve(__dirname, 'public/photos');
+              const dir2 = path.resolve(__dirname, 'src/assets/photos');
+              if (!fs.existsSync(dir1)) fs.mkdirSync(dir1, { recursive: true });
+              if (!fs.existsSync(dir2)) fs.mkdirSync(dir2, { recursive: true });
+              
+              fs.writeFileSync(path.join(dir1, `photo${index}.jpg`), buffer);
+              fs.writeFileSync(path.join(dir2, `photo${index}.jpg`), buffer);
+              
               res.statusCode = 200;
               res.setHeader('Content-Type', 'application/json');
               res.end(JSON.stringify({ success: true, path: `/photos/photo${index}.jpg` }));
