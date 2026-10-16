@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-serif-cormorant {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+  .font-handwriting {
+    font-family: 'Caveat', cursive;
+  }
+  .font-terminal {
+    font-family: 'Share Tech Mono', monospace;
+  }
+}
+
+/* Custom smooth scroll and touch optimizations */
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  -webkit-tap-highlight-color: transparent;
+  background-color: #fbf9f5;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+/* CRT scanline effect for ATM green terminal */
+.crt-screen {
+  background: radial-gradient(circle at 50% 50%, #0d2818 0%, #05160d 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.crt-screen::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.04));
+  z-index: 2;
+  background-size: 100% 3px, 4px 100%;
+  pointer-events: none;
+}
+
+.glow-green {
+  text-shadow: 0 0 6px rgba(74, 222, 128, 0.8), 0 0 14px rgba(74, 222, 128, 0.4);
+}
+
+.glow-box-green {
+  box-shadow: 0 0 12px rgba(74, 222, 128, 0.35);
+}
+
+/* Subtle paper texture */
+.paper-texture {
+  background-color: #fdfbf7;
+  background-image: radial-gradient(#eadbc8 0.75px, transparent 0.75px);
+  background-size: 12px 12px;
+}
+
+/* Washi tape look */
+.washi-tape {
+  background: rgba(235, 215, 185, 0.65);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  backdrop-filter: blur(1px);
+}

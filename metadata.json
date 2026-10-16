@@ -1,0 +1,6 @@
+{
+  "name": "Interactive Birthday Surprise",
+  "description": "A handcrafted, mobile-first interactive birthday surprise experience with 9 chapters, memory photo bank ATM, cake cutting, love meter, and scratch coupon.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
